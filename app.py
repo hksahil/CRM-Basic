@@ -51,7 +51,6 @@ def main():
         columns_to_drop = ['Email_early', 'Phone_early', 'Email_enrolled', 'Phone_enrolled']
         merged_df.drop(columns=columns_to_drop, inplace=True)
         if not merged_df.empty:
-            st.write("## Filter by Status")
             status_to_filter = st.selectbox("Select Status", ["All"] + merged_df["Status"].unique().tolist())
             
             if status_to_filter != "All":
