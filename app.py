@@ -45,7 +45,7 @@ def main():
 
     if early_users_file is not None and enrolled_users_file is not None:
         merged_df = merge_and_mark_status(early_users_file, enrolled_users_file)
-        merged_df['Phone'] = merged_df['Phone_early'].fillna(merged_df['Phone_enrolled'])
+        merged_df['Phone'] = merged_df['Phone_early'].fillna(merged_df['Phone_enrolled']).astype(int)
         merged_df['Email'] = merged_df['Email_early'].fillna(merged_df['Email_enrolled'])
         # Drop the specified columns
         columns_to_drop = ['Email_early', 'Phone_early', 'Email_enrolled', 'Phone_enrolled']
