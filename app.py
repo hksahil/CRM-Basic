@@ -31,7 +31,7 @@ def merge_and_mark_status(early_users_file, enrolled_users_file):
     
     merged["Status"] = merged.apply(mark_status, axis=1)
     
-    merged.drop(["Course_early", "Course_enrolled"], axis=1, inplace=True)
+    #merged.drop(["Course_early", "Course_enrolled"], axis=1, inplace=True)
     
     return merged
 
@@ -45,10 +45,11 @@ def main():
 
     if early_users_file is not None and enrolled_users_file is not None:
         merged_df = merge_and_mark_status(early_users_file, enrolled_users_file)
-        merged_df['Phone'] = merged_df['Phone_early'].fillna(merged_df['Phone_enrolled']).astype(int)
+        merged_df['Phone'] = merged_df['Phone_early'].fillna(merged_df['Phone_enrolled'])
         merged_df['Email'] = merged_df['Email_early'].fillna(merged_df['Email_enrolled'])
+        merged_df['Course'] = merged_df['Course_early'].fillna(merged_df['Course_enrolled'])
         # Drop the specified columns
-        columns_to_drop = ['Email_early', 'Phone_early', 'Email_enrolled', 'Phone_enrolled']
+        columns_to_drop = ['Email_early', 'Phone_early', 'Email_enrolled', 'Phone_enrolled','Course_early','Course_enrolled']
         merged_df.drop(columns=columns_to_drop, inplace=True)
         if not merged_df.empty:
             status_to_filter = st.selectbox("Select Status", ["All"] + merged_df["Status"].unique().tolist())
