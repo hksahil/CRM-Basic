@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 # Page Settings
-st.set_page_config(page_title='Increment Calculator',page_icon=':smile:')
+st.set_page_config(page_title='Kellogg Simulator',page_icon=':smile:')
 
 # CSS
 hide_st_style = """
@@ -38,8 +38,8 @@ def merge_and_mark_status(early_users_file, enrolled_users_file):
 def main():
     st.sidebar.title("Upload Files")
     
-    early_users_file = st.sidebar.file_uploader("Upload early users file (Excel)", type="xlsx")
-    enrolled_users_file = st.sidebar.file_uploader("Upload enrolled users file (Excel)", type="xlsx")
+    early_users_file = st.sidebar.file_uploader("Upload File1 (Excel)", type="xlsx")
+    enrolled_users_file = st.sidebar.file_uploader("Upload File2 (Excel)", type="xlsx")
 
     if early_users_file is not None and enrolled_users_file is not None:
         merged_df = merge_and_mark_status(early_users_file, enrolled_users_file)
